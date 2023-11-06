@@ -1,0 +1,63 @@
+{% extends 'index.html' %}
+{% block content %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="callout callout-success">
+                    {% comment %} <h4>{{ message.tags }}</h4>{% endcomment %}
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Blood Glucose Monitor DeviceList</h3>
+                        <div class="card-tools">
+                            <a href="{% url 'patient_create' %}" class="btn btn-sm btn-primary">New Patient</a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered" id="tbl_patient">
+                            <thead>
+                            <tr>
+                                
+                                <th>SN</th>
+                                <th>Gender</th>
+                               
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for data in bloodglucosemonitors %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ data.blood_glucose_ID }}</td>
+                                    
+                                    <td>
+                                        <a href="{% url 'bloodglucosemonitor_edit' data.id %}" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="{% url 'bloodglucosemonitor_delete' data.id %}"
+                                           class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+
+            $('#tbl_patient').DataTable();
+
+    </script>
+{% endblock %}

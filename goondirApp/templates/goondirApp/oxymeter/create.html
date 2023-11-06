@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="callout callout-success">
+                {% comment %} <h4>{{ message.tags }}</h4>{% endcomment %}
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Create New Oxymeter</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form method="POST">
+
+                        <!-- Security token -->
+                        {% csrf_token %}
+
+                        <!-- Using the formset -->
+                        {{ form.as_p }}
+
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

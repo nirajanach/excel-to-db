@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="callout callout-success">
+                {% comment %} <h4>{{ message.tags }}</h4>{% endcomment %}
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Import from .xlxs file format</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data"> 
+
+                        <!-- Security token -->
+                        {% csrf_token %}
+
+                        <!-- Using the formset -->
+                   
+                            {% csrf_token %}
+                            <input type="file" name="myfile">
+                            <button type="submit">Upload</button>
+           
+
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+   
